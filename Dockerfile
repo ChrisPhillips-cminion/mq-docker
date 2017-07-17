@@ -84,6 +84,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   && sed -i 's/password\t\[success=1 default=ignore\]\tpam_unix\.so obscure sha512/password\t[success=1 default=ignore]\tpam_unix.so obscure sha512 minlen=8/' /etc/pam.d/common-password
 
 COPY *.sh /usr/local/bin/
+COPY *.mqs /etc/mqm/
 COPY *.mqsc /etc/mqm/
 COPY admin.json /etc/mqm/
 

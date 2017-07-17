@@ -1,0 +1,54 @@
+*--------------------------------------------------------
+*SET UP THE QUEUE MANAGER
+*--------------------------------------------------------
+*disable the security for the queue manager
+*
+ALTER qmgr deadq(DEAD.QUEUE.MQDAC01) connauth(' ') chlauth(DISABLED)
+*
+*--------------------------------------------------------
+* LOCAL QUEUES
+*--------------------------------------------------------
+*define the local queues
+*
+DEFINE qlocal (API1IN) +
+ boqname (API1BO) replace
+*
+DEFINE qlocal (API1OUT) replace
+*
+DEFINE qlocal (API1BO) replace
+*
+DEFINE qlocal (API2IN) replace
+*
+DEFINE qlocal (API2OUT) replace
+*
+DEFINE qlocal (DEAD.QUEUE.MQDAC01) replace
+*
+*define the transmission queues
+*
+*--------------------------------------------------------
+*SETUP THE LISTENER
+*--------------------------------------------------------
+*The listener is set to the port assigned to this queue manager
+*
+DEFINE listener (MQDAC01.LISTENER) +
+ trptype (TCP) +
+ control (QMGR) +
+ port (1416) replace
+*----
+START listener (MQDAC01.LISTENER)
+*
+*--------------------------------------------------------
+*CHANNELS
+*--------------------------------------------------------
+* SERVER CONNECTION CHANNELS
+*    -----
+DEFINE channel (MQDAC01.DP.SVRCONN) +
+  chltype (SVRCONN) +
+  mcauser(TESTUSER1) replace
+*
+*-----
+*START CHANNELS
+*-----
+*
+START channel (MQDAC01.DP.SVRCONN)
+*--------------------------------------------------------
