@@ -1,8 +1,7 @@
 
+# MQ Docker
 
-#MQ Docker
-
-# This is an unsupportable fork of the IBM MQ-Docker container. this is being used to play and experiment with. If you need to use this for any important environments please use the original, https://github.com/ibm-messaging/mq-docker
+# This is an unsupportable fork of the IBM MQ-Docker container. this is being used to play and experiment with. If you need to use this for any important environments please use the original,   https://github.com/ibm-messaging/mq-docker
 
 
 
