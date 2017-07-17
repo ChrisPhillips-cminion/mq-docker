@@ -96,5 +96,5 @@ RUN chmod +x /usr/local/bin/*.sh
 EXPOSE 1414 9443
 
 ENV LANG=en_US.UTF-8
-
-ENTRYPOINT ["mq.sh"]
+ENTRYPOINT ["keepalive.sh"]
+#"> /tmp/mq.log & top"]s

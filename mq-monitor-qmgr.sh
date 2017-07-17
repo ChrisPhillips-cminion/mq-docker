@@ -20,7 +20,7 @@ MQ_QMGR_NAME=$1
 
 state()
 {
-  dspmq -n -m ${MQ_QMGR_NAME} | awk -F '[()]' '{ print $4 }'
+  dspmq -n -m ${MQ_QMGR_NAME} | awk -F '\[()]' '{ print $4 }'
 }
 
 trap "source mq-stop-container.sh" SIGTERM SIGINT
@@ -36,17 +36,17 @@ dspmq
 echo "IBM MQ Queue Manager ${MQ_QMGR_NAME} is now fully running"
 
 # Loop until "dspmq" says the queue manager is not running any more
-until [ "`state`" != "RUNNING" ]; do
-  sleep 5
-done
-
-# Wait until queue manager has ended before exiting
-while true; do
-  STATE=`state`
-  case "$STATE" in
-    ENDED*) break;;
-    *) ;;
-  esac
-  sleep 1
-done
-dspmq
+# until [ "`state`" != "RUNNING" ]; do
+#   sleep 5
+# done
+#
+# # Wait until queue manager has ended before exiting
+# while true; do
+#   STATE=`state`
+#   case "$STATE" in
+#     ENDED*) break;;
+#     *) ;;
+#   esac
+#   sleep 1
+# done
+# dspmq
