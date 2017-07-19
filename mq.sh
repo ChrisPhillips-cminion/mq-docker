@@ -33,4 +33,6 @@ source mq-configure-qmgr.sh
 echo "----------------------------------------"
 source mq-dev-config.sh
 echo "----------------------------------------"
+source MQDAC01_SSL.sh
+echo "----------------------------------------"
 exec mq-monitor-qmgr.sh ${MQ_QMGR_NAME}
