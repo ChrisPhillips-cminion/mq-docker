@@ -54,6 +54,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   && useradd --uid 1000 --gid mqm mqm \
   && usermod -G mqm root \
   && cd /tmp/mq/DebianMQServer \
+
   # Accept the MQ license
   && ./mqlicense.sh -text_only -accept \
   && echo "deb [trusted=yes] file:/tmp/mq/DebianMQServer ./" > /etc/apt/sources.list.d/IBM_MQ.list \

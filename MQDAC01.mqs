@@ -3,7 +3,7 @@
 *--------------------------------------------------------
 *disable the security for the queue manager
 *
-ALTER qmgr deadq(DEAD.QUEUE.MQDAC01) connauth(' ') chlauth(DISABLED)
+ALTER qmgr deadq(DEAD.QUEUE.MQDAC01) connauth(' ') chlauth(ENABLED) sslkeyr ('/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01') certlabl('ibmwebspheremqmqdac01')
 *
 *--------------------------------------------------------
 * LOCAL QUEUES
@@ -44,6 +44,8 @@ START listener (MQDAC01.LISTENER)
 *    -----
 DEFINE channel (MQDAC01.DP.SVRCONN) +
   chltype (SVRCONN) +
+  certlabl('ibmwebspheremqmqdac01') +
+  sslciph('TLS_RSA_WITH_AES_128_CBC_SHA256') +
   mcauser(TESTUSER1) replace
 *
 *-----
