@@ -8,7 +8,6 @@ runmqckm -cert -add -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -lab
 runmqckm -certreq -create -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -label ibmwebspheremqmqdac01 -dn "CN=MQDAC01, OU=WMQ, O=IBM" -file "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.arm"
 runmqckm -cert -sign -file "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.arm" -db /tmp/Cte_TEMP_CA.kdb -pw passw0rd  -label "Cte TEMP WMQ/IIB CA"  -target "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.crt" -format ascii -expire 364
 runmqckm -cert -receive -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -file "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.crt"  -format ascii
-echo "ALTER QMGR SSLKEYR ('/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01') CERTLABL('ibmwebspheremqmqdac01')" | runmqsc MQDAC01
-echo "DEFINE channel (MQDAC01.DP.SVRCONN) chltype (SVRCONN) mcauser(TESTUSER1) SSLCIPH('TLS_RSA_WITH_AES_128_CBC_SHA256') replace" | runmqsc MQDAC01
+chmod 755 /var/mqm/qmgrs/MQDAC01/ssl/*
 
-runmqckm -cert -extract -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -label "ibmwebspheremqmqdac01" -target "/tmp/MQDAC01_CER.cer" -format ascii
+runmqckm -cert -extract -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -type cms -label "ibmwebspheremqmqdac01" -target "/tmp/MQDAC01_CER.cer" -format ascii
