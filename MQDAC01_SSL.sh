@@ -9,5 +9,6 @@ runmqckm -certreq -create -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0r
 runmqckm -cert -sign -file "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.arm" -db /tmp/Cte_TEMP_CA.kdb -pw passw0rd  -label "Cte TEMP WMQ/IIB CA"  -target "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.crt" -format ascii -expire 364
 runmqckm -cert -receive -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -file "/var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.crt"  -format ascii
 chmod 755 /var/mqm/qmgrs/MQDAC01/ssl/*
+echo "refresh security" | runmqsc MQDAC01
 
 runmqckm -cert -extract -db /var/mqm/qmgrs/MQDAC01/ssl/MQDAC01.kdb -pw passw0rd -type cms -label "ibmwebspheremqmqdac01" -target "/tmp/MQDAC01_CER.cer" -format ascii
